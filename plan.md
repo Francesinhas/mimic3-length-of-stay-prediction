@@ -1,0 +1,19 @@
+## **Plan**
+- chosing the disease
+	- sql scripts to sort diseases by frequencies - *doc*
+	- #q more data - better model results VS less data - potentially more interpretable results
+	- #q should we model data for each and every patient?
+- ### **Preprocessing**
+	- relevant tables
+		- ADMISSIONS
+		- CHARTEVENTS    ^
+		- DIAGNOSES_ICD
+		- ICUSTAYS   ^
+		- PATIENTS   ^
+		- D_ICD_DIAGNOSIS
+		- D_ITEMS
+	- #### **Feature engineering**
+		- .
+	- 
+- ### **Preparation**
+	- patieint-wise train-test split
