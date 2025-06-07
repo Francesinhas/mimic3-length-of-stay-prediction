@@ -12,8 +12,35 @@
 		- PATIENTS   ^
 		- D_ICD_DIAGNOSIS
 		- D_ITEMS
+	- exclude patients that are far outliers #q
+		- very young and very old
+		- very short and very long stays
+	- exclude patients with not enough data
+		- not the case
+	- exclude patients with invalid data
+		- dismiss before admission
+		- negative or other invalid values 
+	- deal with missing data
+		- ~ missigno library
+		- strategies...
+	- normalize continous features
+		- ? how do we normalize Values in CHARTEVENTS ?
+			- values of different measurement units #q 
+			- should we use different feeatures for each measurement (ITEM) to preserve the individual meanings?
+	- aggregate irregular time-stamped events into fixed time windows (h0, h1, h2, ...)
+		- normalization of time windows starting from the admission time
+	- encode categorigal features into numerical values using one-hot encoding
+		- or should we just leave individual features?
+		- #a label encoding
 	- #### **Feature engineering**
-		- .
+		- #todo corelation matrix - define importance of features
+			- especially to find out which ITEM to take into account
+		- include higher-level related clinical concepts
+			- aggregate granular data into more meaningful concepts
+			- Charlson Comorbidity Index (CCI)
+			- APS, SAPS, ...
+	- **tslearner python** #imp
+		- for time series
 	- 
 - ### **Preparation**
 	- patieint-wise train-test split
