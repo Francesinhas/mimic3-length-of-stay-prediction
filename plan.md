@@ -44,3 +44,37 @@
 	- 
 - ### **Preparation**
 	- patieint-wise train-test split
+
+
+## **Progress**
+- [ ] select disease with ~100 patients
+	- potential:
+		- 85201 - Subarachnoid hemorrhage, without loss of consciousness - 142 patients
+		- 85200 - ..-.., unspecified state of consciousness - 103
+		- 4660 - acute bronchitis - 125
+		- [[#^813fa3]] - query for more
+	- 
+
+
+## **Notes**
+### query for diseases of some numbers
+
+^813fa3
+
+```
+COPY (
+    SELECT 
+        diags.ICD9_CODE AS disease_id,
+        dict.LONG_TITLE AS disease_name,
+        COUNT(DISTINCT diags.SUBJECT_ID) AS patient_count
+    FROM read_csv_auto('DIAGNOSES_ICD.csv') AS diags
+    JOIN read_csv_auto('D_ICD_DIAGNOSES.csv') AS dict
+      ON diags.ICD9_CODE = dict.ICD9_CODE
+    GROUP BY diags.ICD9_CODE, dict.LONG_TITLE
+    HAVING COUNT(DISTINCT diags.SUBJECT_ID) BETWEEN 100 AND 120
+    ORDER BY patient_count DESC
+) TO 'results.csv' (HEADER, DELIMITER ',');
+```
+
+
+
