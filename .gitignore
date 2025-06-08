@@ -1,4 +1,4 @@
 *.csv
 *.gz
 !norm_pneumonia.csv
-!feature_pneumonia.csv
+!features_pneumonia.csv
