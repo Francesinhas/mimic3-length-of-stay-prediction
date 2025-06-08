@@ -26,7 +26,7 @@
 	- normalize continous features
 		- ? how do we normalize Values in CHARTEVENTS ?
 			- values of different measurement units #q 
-			- should we use different feeatures for each measurement (ITEM) to preserve the individual meanings?
+			- should we use different features for each measurement (ITEM) to preserve the individual meanings?
 	- aggregate irregular time-stamped events into fixed time windows (h0, h1, h2, ...)
 		- normalization of time windows starting from the admission time
 	- encode categorigal features into numerical values using one-hot encoding
@@ -47,13 +47,42 @@
 
 
 ## **Progress**
-- [ ] select disease with ~100 patients
+- [x] select disease with ~100 patients
 	- potential:
 		- 85201 - Subarachnoid hemorrhage, without loss of consciousness - 142 patients
 		- 85200 - ..-.., unspecified state of consciousness - 103
-		- 4660 - acute bronchitis - 125
+		- 5435, 4660 - acute bronchitis - 125
 		- [[#^813fa3]] - query for more
-	- 
+- ### Preprocessing
+	- [ ] exclude outliers - based on LOS
+		- [ ] exclude the icu stays with los <= 1
+		- [ ] exclude the icu stays with los 68 extreme outlier
+	- [ ] exclude patients with not enough data
+		- [ ] check how many chartevents items does each patient have
+	- [ ] leave continous items as continous
+		- [ ] keep only items from the first 24h
+		- [ ] normalizie time stamps to start from 0 
+	- [x] extract age
+		- [x] patients over 89 yo: registered as 300
+			- transfer as 91.4 (their average)
+	- [ ] normalize different measurement units #q 
+	- [ ] encode categorical features using label encoding
+		- sex, ethnicity
+	- [ ] 
+	- #### Feature engineering
+		- [ ] correlation matrix - find out which items to take into account
+			- [ ] is expiration date (time of death) relevant #q
+		- [ ] include number of measurements
+		- [ ] include higher level clinical concepts
+			- [ ] SOFA
+				- aggregate different patient metrics for a score of the state of the patient
+			- [ ] Charlson Comorbidity Index (CCI)
+				- [ ] how many patients also have other diagnoses? #q
+			- [ ] APS, SAPS, ...
+		- [ ] define LOS as target - from icustays 
+			- [ ] target transformation
+				- [ ] log transformation to reduce right skew
+	- [ ] 
 
 
 ## **Notes**
